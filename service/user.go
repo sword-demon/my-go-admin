@@ -126,9 +126,9 @@ func GetUserDetail(c *gin.Context) {
 	data.Password = sysUser.Password
 	data.Email = sysUser.Email
 	c.JSON(http.StatusOK, gin.H{
-		"code":   200,
-		"msg":    "获取成功",
-		"result": data,
+		"code": 200,
+		"msg":  "获取成功",
+		"data": data,
 	})
 }
 
@@ -168,6 +168,7 @@ func UpdateUser(c *gin.Context) {
 		"username": in.Username,
 		"phone":    in.Phone,
 		"remarks":  in.Remarks,
+		"email":    in.Email,
 	}).Error
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{

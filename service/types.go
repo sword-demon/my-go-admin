@@ -54,3 +54,30 @@ type UpdateUserRequest struct {
 	ID uint `json:"id"`
 	AddUserRequest
 }
+
+// ----------------- 角色模块开始 ----------------------
+
+// GetRoleListRequest 获取角色列表参数结构体
+type GetRoleListRequest struct {
+	*QueryRequest
+}
+
+// GetRoleListReply 返回角色列表结构体
+type GetRoleListReply struct {
+	ID        string `json:"id"`
+	Name      string `json:"name"`
+	Sort      int    `json:"sort"`
+	IsAdmin   int    `json:"is_admin"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
+}
+
+// AddRoleRequest 新增角色参数结构体
+type AddRoleRequest struct {
+	Name    string `json:"name"`
+	Sort    int64  `json:"sort"`
+	IsAdmin int8   `json:"isAdmin"`
+	Remarks string `json:"remarks"`
+}
+
+// ----------------- 角色模块结束 ----------------------

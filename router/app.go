@@ -27,5 +27,12 @@ func App() *gin.Engine {
 	r.DELETE("/user/:id", service.DeleteUser)
 	// 管理员 end
 
+	// 角色管理 start
+	// 角色列表
+	r.GET("/role", service.GetRoleList)
+	// 新增角色
+	r.POST("/role", service.AddRole)
+	// 角色管理 end
+
 	return r
 }
