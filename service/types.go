@@ -28,7 +28,7 @@ type GetUserListRequest struct {
 type GetUserListReply struct {
 	ID        uint   `json:"id"`
 	Username  string `json:"username"`
-	Avatar    string `json:"Avatar"`
+	Avatar    string `json:"avatar"`
 	Phone     string `json:"phone"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
@@ -40,6 +40,7 @@ type AddUserRequest struct {
 	Password string `json:"password"`
 	Phone    string `json:"phone"`
 	Remarks  string `json:"remarks"`
+	Email    string `json:"email"`
 }
 
 // GetUserDetailReply 获取管理员结构体

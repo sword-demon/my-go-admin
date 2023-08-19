@@ -11,6 +11,8 @@ type SysUser struct {
 	WxOpenId  string `gorm:"column:wx_open_id;type:varchar(255);" json:"wx_open_id"`
 	Avatar    string `gorm:"column:avatar;type:varchar(255);" json:"avatar"` // 头像
 	Remarks   string `gorm:"column:remarks;type:varchar(255);" json:"remarks"`
+	Sex       string `gorm:"column:sex;type:varchar(20)" json:"sex"`
+	Email     string `gorm:"column:email;type:varchar(40)" json:"email"`
 }
 
 func (user *SysUser) TableName() string {

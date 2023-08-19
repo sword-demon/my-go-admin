@@ -80,6 +80,7 @@ func AddUser(c *gin.Context) {
 		Password: in.Password,
 		Phone:    in.Phone,
 		Remarks:  in.Remarks,
+		Email:    in.Email,
 	}).Error
 
 	if err != nil {
@@ -123,6 +124,7 @@ func GetUserDetail(c *gin.Context) {
 	data.Phone = sysUser.Phone
 	data.Username = sysUser.Username
 	data.Password = sysUser.Password
+	data.Email = sysUser.Email
 	c.JSON(http.StatusOK, gin.H{
 		"code":   200,
 		"msg":    "获取成功",
