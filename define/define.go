@@ -12,7 +12,8 @@ var (
 	TokenExpire = time.Now().Add(time.Second * 3600 * 24 * 7).Unix()
 	// RefreshTokenExpire 刷新 token 有效期
 	RefreshTokenExpire = time.Now().Add(time.Second * 3600 * 24 * 14).Unix()
-	DefaultSize        = 10
+	// DefaultSize 默认分页大小
+	DefaultSize = 10
 )
 
 type UserClaim struct {

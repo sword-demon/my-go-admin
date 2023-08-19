@@ -12,20 +12,21 @@ type LoginPasswordReply struct {
 	RefreshToken string `json:"refresh_token"` // 用于刷新 token 的 token
 }
 
+// QueryRequest 关键字和分页信息结构体
+type QueryRequest struct {
+	Page    int    `json:"page" form:"page"`
+	Size    int    `json:"size" form:"size"`
+	Keyword string `json:"keyword" form:"keyword"`
+}
+
 // GetUserListRequest 获取用户列表参数结构体
 type GetUserListRequest struct {
 	*QueryRequest
 }
 
-// QueryRequest 关键字和分页信息结构体
-type QueryRequest struct {
-	Page    int    `json:"page" form:"page"`
-	Size    int    `json:"size" form:"size"`
-	Keyword string `json:"key_word" form:"keyword"`
-}
-
 // GetUserListReply 返回管理员信息结构体
 type GetUserListReply struct {
+	ID        uint   `json:"id"`
 	Username  string `json:"username"`
 	Avatar    string `json:"Avatar"`
 	Phone     string `json:"phone"`

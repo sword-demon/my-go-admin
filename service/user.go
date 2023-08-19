@@ -10,6 +10,7 @@ import (
 // GetUserList 获取管理员列表
 func GetUserList(c *gin.Context) {
 	in := &GetUserListRequest{NewQueryRequest()}
+	// query 查询 绑定query查询参数
 	err := c.ShouldBindQuery(in)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
