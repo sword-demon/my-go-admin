@@ -80,4 +80,10 @@ type AddRoleRequest struct {
 	Remarks string `json:"remarks"`
 }
 
+// GetRoleDetailReply 获取角色详情结构体
+type GetRoleDetailReply struct {
+	ID uint `json:"id"`
+	AddRoleRequest
+}
+
 // ----------------- 角色模块结束 ----------------------

@@ -26,3 +26,10 @@ func GetRoleList(keyword string) *gorm.DB {
 	tx.Order("sort ASC")
 	return tx
 }
+
+// GetRoleDetail 根据ID获取角色信息
+func GetRoleDetail(id uint) (*SysRole, error) {
+	su := new(SysRole)
+	err := DB.Model(new(SysRole)).Where("id = ?", id).First(su).Error
+	return su, err
+}

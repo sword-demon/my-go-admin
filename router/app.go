@@ -32,6 +32,7 @@ func App() *gin.Engine {
 	r.GET("/role", service.GetRoleList)
 	// 新增角色
 	r.POST("/role", service.AddRole)
+	r.GET("/role/detail", service.GetRoleDetail)
 	// 角色管理 end
 
 	return r

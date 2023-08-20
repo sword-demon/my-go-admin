@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"my-go-admin/models"
 	"net/http"
+	"strconv"
 )
 
 // GetRoleList 角色列表
@@ -94,4 +95,37 @@ func AddRole(c *gin.Context) {
 		"msg":  "保存成功",
 	})
 
+}
+
+// GetRoleDetail 根据ID获取角色详情信息
+func GetRoleDetail(c *gin.Context) {
+	id := c.Query("id")
+	if id == "" {
+		c.JSON(http.StatusOK, gin.H{
+			"code": -1,
+			"msg":  "必填参数不能为空",
+		})
+		return
+	}
+	uId, err := strconv.Atoi(id)
+	data := new(GetRoleDetailReply)
+	// 1. 获取角色基本信息
+	sysRole, err := models.GetRoleDetail(uint(uId))
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code": -1,
+			"msg":  "数据库异常",
+		})
+		return
+	}
+	data.ID = sysRole.ID
+	data.Remarks = sysRole.Remarks
+	data.IsAdmin = sysRole.IsAdmin
+	data.Sort = sysRole.Sort
+	data.Name = sysRole.Name
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "获取成功",
+		"data": data,
+	})
 }
