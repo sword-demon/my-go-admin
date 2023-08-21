@@ -33,6 +33,10 @@ func App() *gin.Engine {
 	// 新增角色
 	r.POST("/role", service.AddRole)
 	r.GET("/role/detail", service.GetRoleDetail)
+	// 修改角色
+	r.PUT("/role", service.UpdateRole)
+	// 删除角色
+	r.DELETE("/role/:id", service.DeleteRole)
 	// 角色管理 end
 
 	return r

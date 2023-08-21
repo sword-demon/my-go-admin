@@ -86,4 +86,10 @@ type GetRoleDetailReply struct {
 	AddRoleRequest
 }
 
+// UpdateRoleRequest 更新角色信息结构体
+type UpdateRoleRequest struct {
+	ID uint `json:"id"`
+	AddRoleRequest
+}
+
 // ----------------- 角色模块结束 ----------------------

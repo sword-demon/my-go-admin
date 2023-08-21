@@ -129,3 +129,81 @@ func GetRoleDetail(c *gin.Context) {
 		"data": data,
 	})
 }
+
+// UpdateRole 修改角色信息
+func UpdateRole(c *gin.Context) {
+	in := new(UpdateRoleRequest)
+	err := c.ShouldBindJSON(in)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code": -1,
+			"msg":  "参数异常",
+		})
+		return
+	}
+
+	// 1. 判断角色名称是否已存在
+	var cnt int64
+	err = models.DB.Model(new(models.SysRole)).Where("id != ? AND name = ?", in.ID, in.Name).Count(&cnt).Error
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code": -1,
+			"msg":  "数据库异常",
+		})
+		return
+	}
+	if cnt > 0 {
+		c.JSON(http.StatusOK, gin.H{
+			"code": -1,
+			"msg":  "角色名称已存在",
+		})
+		return
+	}
+
+	// 2. 修改数据
+	err = models.DB.Model(new(models.SysRole)).Where("id = ?", in.ID).Updates(map[string]any{
+		"name":     in.Name,
+		"is_admin": in.IsAdmin,
+		"sort":     in.Sort,
+		"remarks":  in.Remarks,
+	}).Error
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code": -1,
+			"msg":  "数据库异常",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "修改成功",
+	})
+}
+
+// DeleteRole 根据ID删除角色
+func DeleteRole(c *gin.Context) {
+	id := c.Param("id")
+	if id == "" {
+		c.JSON(http.StatusOK, gin.H{
+			"code": -1,
+			"msg":  "必填参不能为空",
+		})
+		return
+	}
+	// 删除角色
+	err := models.DB.Where("id = ? ", id).Delete(new(models.SysRole)).Error
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code": -1,
+			"msg":  "数据库异常",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "删除成功",
+	})
+
+}
